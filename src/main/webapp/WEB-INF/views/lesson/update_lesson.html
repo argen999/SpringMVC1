@@ -23,19 +23,13 @@
 </head>
 <body>
 <div>
-    <form action="#" th:action="@{/{courseId}/{id}/saveUpdateInstructor(courseId=${courseId}, id=${updateInstructor.id})}" th:object="${updateInstructor}" method="POST">
+    <form action="#"
+          th:action="@{/{courseId}/{id}/saveUpdateLesson(courseId=${courseId}, id=${updateLesson.id})}"
+          th:object="${updateLesson}" method="POST">
         <input type="hidden" name="id" th:field="*{id}">
-        <input type="text" name="firstname" th:field="*{firstname}" placeholder="First Name">
+        <input type="text" name="lessonName" th:field="*{lessonName}" placeholder="Lesson Name">
         <br><br>
-        <input type="text" name="lastname" th:field="*{lastname}" placeholder="Last Name">
-        <br><br>
-        <input type="text" name="phoneNumber" th:field="*{phoneNumber}" placeholder="Phone Number">
-        <br><br>
-        <input type="text" name="email" th:field="*{email}" placeholder="Email">
-        <br><br>
-        <input type="text" name="specialization" th:field="*{specialization}" placeholder="Specialization">
-        <br><br>
-        <input type="submit" value="Update Instructor">
+        <input type="submit" value="Update Lesson">
     </form>
 </div>
 </body>

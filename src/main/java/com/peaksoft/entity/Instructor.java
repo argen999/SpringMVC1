@@ -32,7 +32,7 @@ public class Instructor {
     @Column(length = 500)
     private String email;
 
-    @Column(name = "specialization")
+    @Column
     private String specialization;
 
     public Instructor(String firstname, String lastname, Integer phoneNumber, String email, String specialization) {

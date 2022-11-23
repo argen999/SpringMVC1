@@ -48,14 +48,20 @@ public class Course {
     @OneToMany(cascade = {DETACH, MERGE, REFRESH, REMOVE}, fetch = LAZY, mappedBy = "course")
     private List<Instructor> instructors;
 
+    @OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "course")
+    private List<Lesson> lessons;
+
     public void addGroup(Group group) {
         if (groups == null) groups = new ArrayList<>();
         groups.add(group);
     }
-
     public void addInstructor(Instructor instructor) {
         if (instructors == null) instructors = new ArrayList<>();
         instructors.add(instructor);
+    }
+    public void addLesson(Lesson lesson) {
+        if (lessons == null) lessons = new ArrayList<>();
+        lessons.add(lesson);
     }
 
 }

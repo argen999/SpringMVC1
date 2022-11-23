@@ -32,7 +32,8 @@
         <th scope="col">Course Name</th>
         <th scope="col">Duration</th>
         <th scope="col">Description</th>
-        <th scope="col">Instructor</th>
+        <th scope="col">Instructors</th>
+        <th scope="col">Lessons</th>
 <!--        <th scope="col">AssignGroup</th>-->
         <th scope="col">Groups</th>
         <th scope="col">Update</th>
@@ -46,25 +47,31 @@
         <td th:text="${course.duration}"></td>
         <td th:text="${course.description}"></td>
 
-<!--        <td>-->
-<!--            <form th:method="POST"-->
-<!--                  th:action="@{/{courseId}/{id}/assignGroup(courseId=${courseId}, id=${group.id})}">-->
-<!--                <select name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"-->
-<!--                        th:object="${group}" th:field="*{id}">-->
-<!--                    <option th:each="group : ${groups}"-->
-<!--                            th:value="${group.id}"-->
-<!--                            th:text="${group.groupName}">-->
-<!--                    </option>-->
-<!--                </select>-->
-<!--                <input type="submit" value="submit"/>-->
-<!--            </form>-->
-<!--        </td>-->
-
         <td>
             <a th:href="@{/getAllInstructorByCourseId/{courseId}(courseId=${course.id})}">
                 <button>Instructors</button>
             </a>
         </td>
+
+        <td>
+            <a th:href="@{/getAllLessonByCourseId/{courseId}(courseId=${course.id})}">
+                <button>Lessons</button>
+            </a>
+        </td>
+
+        <!--        <td>-->
+        <!--            <form th:method="POST"-->
+        <!--                  th:action="@{/{courseId}/{id}/assignGroup(courseId=${courseId}, id=${group.id})}">-->
+        <!--                <select name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"-->
+        <!--                        th:object="${group}" th:field="*{id}">-->
+        <!--                    <option th:each="group : ${groups}"-->
+        <!--                            th:value="${group.id}"-->
+        <!--                            th:text="${group.groupName}">-->
+        <!--                    </option>-->
+        <!--                </select>-->
+        <!--                <input type="submit" value="submit"/>-->
+        <!--            </form>-->
+        <!--        </td>-->
 
         <td>
             <a th:href="@{/getAllGroupByCourseId/{courseId}(courseId=${course.id})}">
