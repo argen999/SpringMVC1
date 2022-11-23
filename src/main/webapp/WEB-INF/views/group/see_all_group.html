@@ -32,43 +32,17 @@
         <th scope="col">Group Name</th>
         <th scope="col">Date Of Start</th>
         <th scope="col">Image</th>
-        <th scope="col">Update</th>
-        <th scope="col">Delete</th>
     </tr>
     </thead>
     <tbody class="table-success">
-    <tr th:each="group: ${getAllGroupByCourseId}">
+    <tr th:each="group: ${getAllGroup}">
         <td th:text="${group.id}"></td>
         <td th:text="${group.groupName}"></td>
         <td th:text="${group.dataOfStart}"></td>
         <td th:text="${group.image}"></td>
-
-            <td>
-              <a th:href="@{/updateGroupByCourseId/{courseId}/{id}(id=${group.id}, courseId=${courseId})}">
-                <button>Update</button>
-              </a>
-            </td>
-
-            <td>
-              <a th:href="@{/{courseId}/{id}/deleteGroupById(courseId=${courseId}, id=${group.id})}"
-                 onclick="return confirm('Are you sure to delete this course?');">
-                <button>Delete</button>
-              </a>
-            </td>
-
     </tr>
     </tbody>
 </table>
 <br><br><br><br>
-<div style="text-align: center">
-    <a th:href="@{/getAllGroupByCourseId/{courseId}/new(courseId=${courseId})}">
-        <button style="font-size: 25px;"> Add Group</button>
-    </a>
-</div>
-<div style="text-align: center">
-    <a th:href="@{/getAllGroup/{courseId}(courseId=${courseId})}">
-        <button style="font-size: 25px;"> SEE ALL GROUP </button>
-    </a>
-</div>
 </body>
 </html>

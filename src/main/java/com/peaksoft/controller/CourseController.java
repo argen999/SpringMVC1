@@ -1,20 +1,27 @@
 package com.peaksoft.controller;
 
 import com.peaksoft.entity.Course;
+import com.peaksoft.entity.Group;
 import com.peaksoft.service.CourseService;
+import com.peaksoft.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+
+
 @Controller
 public class CourseController {
 
     private final CourseService courseService;
+    private final GroupService groupService;
 
     @Autowired
-    public CourseController(CourseService courseService) {
+    public CourseController(CourseService courseService, GroupService groupService) {
         this.courseService = courseService;
+        this.groupService = groupService;
     }
 
     @GetMapping("/getAllCourse/{companyId}")
@@ -34,7 +41,7 @@ public class CourseController {
     @GetMapping("/getCourseById/{id}")
     public String getCourseById(@PathVariable Long id, Model model) {
         model.addAttribute("course", courseService.getCourseById(id));
-        return "/course/get_all_course_by_company_id";
+        return "redirect:/getAllCourseByCompanyId";
     }
 
     @GetMapping("/getAllCourseByCompanyId/{companyId}/new")
@@ -47,7 +54,7 @@ public class CourseController {
     @PostMapping("/{companyId}/save")
     public String saveCourse(@PathVariable Long companyId, @ModelAttribute("newCourse") Course course) {
         courseService.saveCourse(companyId, course);
-        return "redirect:/getAllCourseByCompanyId/"+companyId;
+        return "redirect:/getAllCourseByCompanyId/" + companyId;
     }
 
     @GetMapping("/updateCourse/{id}")
@@ -62,13 +69,23 @@ public class CourseController {
     public String saveUpdateCourse(@PathVariable("companyId") Long companyId,
                                    @PathVariable("id") Long id, @ModelAttribute("updateCourse") Course course) {
         courseService.updateCourse(id, course);
-        return "redirect:/getAllCourseByCompanyId/"+companyId;
+        return "redirect:/getAllCourseByCompanyId/" + companyId;
     }
 
     @GetMapping("/{companyId}/{id}/deleteCourseById")
     public String deleteCourseById(@PathVariable("companyId") Long companyId, @PathVariable("id") Long id) {
         courseService.deleteCourse(id);
-        return "redirect:/getAllCourseByCompanyId/"+companyId;
+        return "redirect:/getAllCourseByCompanyId/" + companyId;
     }
 
+//    @PostMapping("/{courseId}/{id}/assignGroup")
+//    private String assignGroup(@PathVariable Long id,
+//                               @PathVariable Long courseId,
+//                               @ModelAttribute("group") Group group, Model model) throws IOException {
+//        model.addAttribute("groups", groupService.getAllGroup());
+//        model.addAttribute("courseId", courseId);
+//        model.addAttribute("id", id);
+//        groupService.assignGroup(courseId, id);
+//        return "/course/get_all_course_by_company_id";
+//    }
 }

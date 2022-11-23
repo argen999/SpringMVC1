@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Repository
@@ -19,14 +20,14 @@ public class GroupRepositoryImpl implements GroupRepository {
 
     @Override
     public List<Group> getAllGroup() {
-        return entityManager.createQuery("select g from Group g").getResultList();
+        return entityManager.createQuery("select g from Group g ").getResultList();
     }
 
     @Override
     public List<Group> getAllGroup(Long courseId) {
-        List<Group> groupList = entityManager.find(Course.class,courseId).getGroups();
-        groupList.forEach(System.out::println);
-        return groupList;
+        List<Group> groups = entityManager.find(Course.class, courseId).getGroups();
+        groups.forEach(System.out::println);
+        return groups;
     }
 
     @Override
@@ -54,5 +55,15 @@ public class GroupRepositoryImpl implements GroupRepository {
     @Override
     public void deleteGroup(Long id) {
         entityManager.remove(entityManager.find(Group.class, id));
+    }
+
+    @Override
+    public void assignGroup(Long courseId, Long id) throws IOException {
+        Course course = entityManager.find(Course.class, courseId);
+        Group group = entityManager.find(Group.class, id);
+        course.addGroup(group);
+        group.addCourse(course);
+        entityManager.merge(group);
+        entityManager.merge(course);
     }
 }

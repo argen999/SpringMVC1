@@ -40,10 +40,10 @@ public class Group {
         this.image = image;
     }
 
-
     public void addCourse(Course course) {
         if (courses == null) courses = new ArrayList<>();
         courses.add(course);
     }
+
 
 }

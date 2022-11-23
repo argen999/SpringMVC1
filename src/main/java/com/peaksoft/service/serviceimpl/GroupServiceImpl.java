@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -51,6 +52,9 @@ public class GroupServiceImpl implements GroupService {
         groupRepository.deleteGroup(id);
     }
 
-
+    @Override
+    public void assignGroup(Long courseId, Long id) throws IOException {
+        groupRepository.assignGroup(courseId, id);
+    }
 
 }
