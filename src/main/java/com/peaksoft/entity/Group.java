@@ -34,6 +34,9 @@ public class Group {
     @ManyToMany(cascade = {DETACH, MERGE, REFRESH}, fetch = LAZY)
     private List<Course> courses;
 
+    @OneToMany(cascade = {DETACH, MERGE, REFRESH, REMOVE}, fetch = LAZY, mappedBy = "group")
+    private List<Student> students;
+
     public Group(String groupName, String dataOfStart, String image) {
         this.groupName = groupName;
         this.dataOfStart = dataOfStart;
@@ -45,5 +48,9 @@ public class Group {
         courses.add(course);
     }
 
+    public void addStudent(Student student) {
+        if (students == null) students = new ArrayList<>();
+        students.add(student);
+    }
 
 }

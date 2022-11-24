@@ -32,6 +32,7 @@
         <th scope="col">Group Name</th>
         <th scope="col">Date Of Start</th>
         <th scope="col">Image</th>
+        <th scope="col">Students</th>
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
     </tr>
@@ -43,18 +44,24 @@
         <td th:text="${group.dataOfStart}"></td>
         <td th:text="${group.image}"></td>
 
-            <td>
-              <a th:href="@{/updateGroupByCourseId/{courseId}/{id}(id=${group.id}, courseId=${courseId})}">
-                <button>Update</button>
-              </a>
-            </td>
+        <td>
+            <a th:href="@{/getAllStudentByCourseId/{groupId}(groupId=${group.id})}">
+                <button>Students</button>
+            </a>
+        </td>
 
-            <td>
-              <a th:href="@{/{courseId}/{id}/deleteGroupById(courseId=${courseId}, id=${group.id})}"
-                 onclick="return confirm('Are you sure to delete this course?');">
+        <td>
+            <a th:href="@{/updateGroupByCourseId/{courseId}/{id}(id=${group.id}, courseId=${courseId})}">
+                <button>Update</button>
+            </a>
+        </td>
+
+        <td>
+            <a th:href="@{/{courseId}/{id}/deleteGroupById(courseId=${courseId}, id=${group.id})}"
+               onclick="return confirm('Are you sure to delete this course?');">
                 <button>Delete</button>
-              </a>
-            </td>
+            </a>
+        </td>
 
     </tr>
     </tbody>
@@ -67,7 +74,7 @@
 </div>
 <div style="text-align: center">
     <a th:href="@{/getAllGroup/{courseId}(courseId=${courseId})}">
-        <button style="font-size: 25px;"> SEE ALL GROUP </button>
+        <button style="font-size: 25px;"> SEE ALL GROUP</button>
     </a>
 </div>
 </body>

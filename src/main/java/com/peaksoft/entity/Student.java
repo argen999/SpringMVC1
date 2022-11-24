@@ -29,10 +29,10 @@ public class Student {
     @Column(length = 500)
     private String phoneNumber;
 
-    @Column(length = 100000, name = "email")
+    @Column(length = 500, name = "email")
     private String email;
 
-    @Column(length = 100000, name = "study_format")
+    @Column(length = 500)
     private String studyFormat;
 
     @ManyToOne(cascade = {PERSIST, MERGE, DETACH, REFRESH}, fetch = FetchType.EAGER)
@@ -45,4 +45,7 @@ public class Student {
         this.email = email;
         this.studyFormat = studyFormat;
     }
+
+
+
 }
