@@ -21,7 +21,7 @@ public class LessonController {
     }
 
     @GetMapping("/getAllLesson/{courseId}")
-    public String getAllCourse(@PathVariable Long courseId, Model model) {
+    public String getAllLesson(@PathVariable Long courseId, Model model) {
         model.addAttribute("getAllLesson", lessonService.getAllLesson());
         model.addAttribute("courseId", courseId);
         return "/lesson/see_all_lesson";
