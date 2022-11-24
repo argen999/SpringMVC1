@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All Lesson By Course Id</title>
+    <title>All Task By Lesson Id</title>
     <style>table,
     td {
         border: 1px solid #333333FF;
@@ -29,31 +29,28 @@
     <thead class="table-dark">
     <tr>
         <th scope="colgroup">Id</th>
-        <th scope="col">Lesson name</th>
-        <th scope="col">Tasks</th>
+        <th scope="col">Task name</th>
+        <th scope="col">Task text</th>
+        <th scope="col">Deadline</th>
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
     </tr>
     </thead>
     <tbody class="table-success">
-    <tr th:each="lesson: ${getAllLessonByCourseId}">
-        <td th:text="${lesson.id}"></td>
-        <td th:text="${lesson.lessonName}"></td>
+    <tr th:each="task: ${getAllTaskByLessonId}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.taskName}"></td>
+        <td th:text="${task.taskText}"></td>
+        <td th:text="${task.deadLine}"></td>
 
         <td>
-            <a th:href="@{/getAllTaskByLessonId/{lessonId}(lessonId=${lesson.id})}">
-                <button>Tasks</button>
-            </a>
-        </td>
-
-        <td>
-            <a th:href="@{/updateLesson/{id}(id=${lesson.id})}">
+            <a th:href="@{/updateTask/{id}(id=${task.id})}">
                 <button>Update</button>
             </a>
         </td>
 
         <td>
-            <a th:href="@{/{courseId}/{id}/deleteLessonById(courseId=${courseId}, id=${lesson.id})}"
+            <a th:href="@{/{lessonId}/{id}/deleteTaskById(lessonId=${lessonId}, id=${task.id})}"
                onclick="return confirm('Are you sure to delete this course?');">
                 <button>Delete</button>
             </a>
@@ -64,14 +61,14 @@
 </table>
 <br><br><br><br>
 <div style="text-align: center">
-    <a th:href="@{/getAllLessonByCourseId/{courseId}/new(courseId=${courseId})}">
-        <button style="font-size: 25px;"> Add Lesson </button>
+    <a th:href="@{/getAllTaskByLessonId/{lessonId}/new(lessonId=${lessonId})}">
+        <button style="font-size: 25px;">Add Task</button>
     </a>
 </div>
 <div style="text-align: center">
-    <a th:href="@{/getAllLesson/{courseId}(courseId=${courseId})}">
-        <button style="font-size: 25px;"> SEE ALL LESSON </button>
-    </a>
+  <a th:href="@{/getAllTask/{lessonId}(lessonId=${lessonId})}">
+    <button style="font-size: 25px;"> SEE ALL STUDENT </button>
+  </a>
 </div>
 </body>
 </html>

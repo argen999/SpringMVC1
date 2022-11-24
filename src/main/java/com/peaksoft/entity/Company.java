@@ -35,10 +35,6 @@ public class Company {
     @OneToMany(cascade = {DETACH, MERGE, REFRESH, REMOVE}, fetch = LAZY, mappedBy = "company")
     private List<Course> courses;
 
-
-
-
-
     public void addCourse(Course course) {
         if (courses == null) courses = new ArrayList<>();
         courses.add(course);

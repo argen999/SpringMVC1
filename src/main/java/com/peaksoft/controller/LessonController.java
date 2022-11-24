@@ -48,7 +48,7 @@ public class LessonController {
     }
 
     @PostMapping("/{courseId}/saveLesson")
-    public String saveInstructor(@PathVariable Long courseId, @ModelAttribute("newLesson") Lesson lesson) {
+    public String saveLesson(@PathVariable Long courseId, @ModelAttribute("newLesson") Lesson lesson) {
         lessonService.saveLesson(courseId, lesson);
         return "redirect:/getAllLessonByCourseId/" + courseId;
     }
