@@ -34,7 +34,7 @@
         <th scope="col">Description</th>
         <th scope="col">Instructors</th>
         <th scope="col">Lessons</th>
-<!--        <th scope="col">AssignGroup</th>-->
+       <!-- <th scope="col">AssignGroup</th>  -->
         <th scope="col">Groups</th>
         <th scope="col">Update</th>
         <th scope="col">Delete</th>
@@ -58,20 +58,6 @@
                 <button>Lessons</button>
             </a>
         </td>
-
-        <!--        <td>-->
-        <!--            <form th:method="POST"-->
-        <!--                  th:action="@{/{courseId}/{id}/assignGroup(courseId=${courseId}, id=${group.id})}">-->
-        <!--                <select name="instructor" class="form-select form-select-sm" aria-label=".form-select-sm example"-->
-        <!--                        th:object="${group}" th:field="*{id}">-->
-        <!--                    <option th:each="group : ${groups}"-->
-        <!--                            th:value="${group.id}"-->
-        <!--                            th:text="${group.groupName}">-->
-        <!--                    </option>-->
-        <!--                </select>-->
-        <!--                <input type="submit" value="submit"/>-->
-        <!--            </form>-->
-        <!--        </td>-->
 
         <td>
             <a th:href="@{/getAllGroupByCourseId/{courseId}(courseId=${course.id})}">
@@ -103,13 +89,13 @@
 </div>
 <div style="text-align: center">
     <a th:href="@{/getAllCourse/{companyId}(companyId=${companyId})}">
-        <button style="font-size: 25px;"> SEE ALL COURSE</button>
+        <button style="font-size: 20px;"> SEE ALL COURSE</button>
     </a>
 </div>
-<!--<div style="text-align: center">-->
-<!--    <a th:company th:href="@{}">-->
-<!--        <button style="font-size: 25px;"> Back to companies </button>-->
-<!--    </a>-->
-<!--</div>-->
+<div style="text-align: center">
+    <a th:company th:href="@{/getAllCompany}">
+        <button style="font-size: 15px;"> Back to companies </button>
+    </a>
+</div>
 </body>
 </html>

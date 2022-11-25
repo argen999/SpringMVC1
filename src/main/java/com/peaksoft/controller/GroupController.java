@@ -76,5 +76,4 @@ public class GroupController {
         return "redirect:/getAllGroupByCourseId/" + courseId;
     }
 
-
 }

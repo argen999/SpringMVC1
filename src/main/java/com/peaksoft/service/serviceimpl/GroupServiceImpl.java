@@ -53,8 +53,10 @@ public class GroupServiceImpl implements GroupService {
     }
 
     @Override
-    public void assignGroup(Long courseId, Long id) throws IOException {
+    public void assignGroup(Long courseId, Long id) {
+        System.out.println("3");
         groupRepository.assignGroup(courseId, id);
+        System.out.println("4");
     }
 
 }

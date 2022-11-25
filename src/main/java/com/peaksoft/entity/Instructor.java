@@ -35,6 +35,9 @@ public class Instructor {
     @Column
     private String specialization;
 
+    @Column
+    private int student = 0;
+
     public Instructor(String firstname, String lastname, Integer phoneNumber, String email, String specialization) {
         this.firstname = firstname;
         this.lastname = lastname;
@@ -45,5 +48,12 @@ public class Instructor {
 
     @ManyToOne(cascade = {DETACH, MERGE, REFRESH, PERSIST}, fetch = EAGER)
     private Course course;
+
+    public void plus() {
+        student++;
+    }
+    public void minus() {
+        student--;
+    }
 
 }

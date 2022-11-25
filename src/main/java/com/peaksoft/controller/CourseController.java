@@ -27,12 +27,14 @@ public class CourseController {
     @GetMapping("/getAllCourse/{companyId}")
     public String getAllCourse(@PathVariable Long companyId, Model model) {
         model.addAttribute("getAllCourse", courseService.getAllCourse());
-        model.addAttribute("company_Id", companyId);
+        model.addAttribute("companyId", companyId);
         return "/course/see_all_courses";
     }
 
     @GetMapping("/getAllCourseByCompanyId/{companyId}")
-    public String getAllCourseByCompanyId(@PathVariable Long companyId, Model model) {
+    public String getAllCourseByCompanyId(@PathVariable Long companyId,
+                                          @ModelAttribute("gr") Group group,
+                                          Model model) {
         model.addAttribute("getAllCourseByCompanyId", courseService.getAllCourse(companyId));
         model.addAttribute("companyId", companyId);
         return "/course/get_all_course_by_company_id";
@@ -40,7 +42,8 @@ public class CourseController {
 
     @GetMapping("/getCourseById/{id}")
     public String getCourseById(@PathVariable Long id, Model model) {
-        model.addAttribute("course", courseService.getCourseById(id));
+        Course course = courseService.getCourseById(id);
+        model.addAttribute("course", course);
         return "redirect:/getAllCourseByCompanyId";
     }
 
@@ -78,14 +81,13 @@ public class CourseController {
         return "redirect:/getAllCourseByCompanyId/" + companyId;
     }
 
-//    @PostMapping("/{courseId}/{id}/assignGroup")
-//    private String assignGroup(@PathVariable Long id,
-//                               @PathVariable Long courseId,
-//                               @ModelAttribute("group") Group group, Model model) throws IOException {
-//        model.addAttribute("groups", groupService.getAllGroup());
-//        model.addAttribute("courseId", courseId);
-//        model.addAttribute("id", id);
-//        groupService.assignGroup(courseId, id);
-//        return "/course/get_all_course_by_company_id";
+//    @GetMapping("/{courseId}/{groupId}/assignGroup")
+//    public String assignGroup(@PathVariable Long courseId,
+//                              @PathVariable Long groupId,
+//                              @ModelAttribute("group") Group group) {
+//        System.out.println("1");
+//        groupService.assignGroup(courseId, groupId);
+//        System.out.println("2");
+//        return "redirect:/getAllGroupByCourseId/" + courseId;
 //    }
 }

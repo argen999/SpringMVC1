@@ -42,7 +42,7 @@ public class Course {
     @ManyToOne(cascade = {DETACH, MERGE, REFRESH, PERSIST}, fetch = EAGER)
     private Company company;
 
-    @ManyToMany(cascade = {DETACH, REFRESH, MERGE, REMOVE}, fetch = LAZY, mappedBy = "courses")
+    @ManyToMany(cascade = {DETACH, REFRESH, MERGE}, fetch = LAZY, mappedBy = "courses")
     private List<Group> groups;
 
     @OneToMany(cascade = {DETACH, MERGE, REFRESH, REMOVE}, fetch = LAZY, mappedBy = "course")

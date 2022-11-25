@@ -27,6 +27,9 @@ public class Company {
     @Column(length = 500)
     private String locatedCountry;
 
+    @Column
+    private int student = 0;
+
     public Company(String companyName, String locatedCountry) {
         this.companyName = companyName;
         this.locatedCountry = locatedCountry;
@@ -39,4 +42,13 @@ public class Company {
         if (courses == null) courses = new ArrayList<>();
         courses.add(course);
     }
+
+    public void plus() {
+        student++;
+    }
+
+    public void minus() {
+        student--;
+    }
+
 }
