@@ -1,6 +1,7 @@
 package com.peaksoft.controller;
 
 import com.peaksoft.entity.Student;
+import com.peaksoft.entity.enums.StudyFormat;
 import com.peaksoft.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,8 @@ public class StudentController {
     public String newStudent(@PathVariable Long groupId, Model model) {
         model.addAttribute("newStudent", new Student());
         model.addAttribute("groupId", groupId);
+        model.addAttribute("studyFormatOnline", StudyFormat.ONLINE);
+        model.addAttribute("studyFormatOffline", StudyFormat.OFFLINE);
         return "/student/save_student";
     }
 
@@ -58,6 +61,8 @@ public class StudentController {
         Student student = studentService.getStudentById(id);
         model.addAttribute("updateStudent", student);
         model.addAttribute("groupId", student.getGroup().getId());
+        model.addAttribute("studyFormatOnline", StudyFormat.ONLINE);
+        model.addAttribute("studyFormatOffline", StudyFormat.OFFLINE);
         return "/student/update_student";
     }
 

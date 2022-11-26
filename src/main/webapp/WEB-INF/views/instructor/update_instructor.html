@@ -33,7 +33,16 @@
         <br><br>
         <input type="email" name="email" th:field="*{email}" placeholder="Email">
         <br><br>
-        <input type="text" name="specialization" th:field="*{specialization}" placeholder="Specialization">
+        <label>
+            <select th:field="*{specialization}">
+                <option th:value="${BACKEND_DEVELOPER}">BACK_END_DEVELOPER</option>
+                <option th:value="${FRONT_END_DEVELOPER}">FRONT_END_DEVELOPER</option>
+                <option th:value="${PM_MANAGER}">PM_MANAGER</option>
+                <option th:value="${UX_UI_DESIGNER}">UX_UI_DESIGNER</option>
+                <option th:value="${IOS_DEVELOPER}">IOS_DEVELOPER</option>
+                <option th:value="${ANDROID_DEVELOPER}">ANDROID_DEVELOPER</option>
+            </select>
+        </label>
         <br><br>
         <input type="submit" value="Update Instructor">
     </form>

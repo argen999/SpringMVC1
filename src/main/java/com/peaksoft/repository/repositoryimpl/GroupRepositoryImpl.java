@@ -58,19 +58,19 @@ public class GroupRepositoryImpl implements GroupRepository {
     }
 
     @Override
-    public void assignGroup(Long courseId, Long id) {
-        System.out.println("5");
-        Course course = entityManager.find(Course.class, courseId);
-        System.out.println("6");
+    public void assignGroup(Long courseId, Long id) throws IOException {
         Group group = entityManager.find(Group.class, id);
-        System.out.println("7");
-        course.addGroup(group);
-        System.out.println("8");
+        Course course = entityManager.find(Course.class, courseId);
+        if (course.getGroups() != null) {
+            for (Group g : course.getGroups()) {
+                if (g.getId() == id) {
+                    throw new IOException("Bul course bosh emes!");
+                }
+            }
+        }
         group.addCourse(course);
-        System.out.println("9");
+        course.addGroup(group);
         entityManager.merge(group);
-        System.out.println("10");
         entityManager.merge(course);
-        System.out.println("11");
     }
 }

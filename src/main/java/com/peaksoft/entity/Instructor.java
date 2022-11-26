@@ -1,5 +1,6 @@
 package com.peaksoft.entity;
 
+import com.peaksoft.entity.enums.Specialization;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,12 +34,12 @@ public class Instructor {
     private String email;
 
     @Column
-    private String specialization;
+    private Specialization specialization;
 
     @Column
     private int student = 0;
 
-    public Instructor(String firstname, String lastname, Integer phoneNumber, String email, String specialization) {
+    public Instructor(String firstname, String lastname, Integer phoneNumber, String email, Specialization specialization) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phoneNumber = phoneNumber;

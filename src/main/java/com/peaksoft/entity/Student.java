@@ -1,5 +1,6 @@
 package com.peaksoft.entity;
 
+import com.peaksoft.entity.enums.StudyFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,19 +34,17 @@ public class Student {
     private String email;
 
     @Column(length = 500)
-    private String studyFormat;
+    private StudyFormat studyFormat;
 
     @ManyToOne(cascade = {PERSIST, MERGE, DETACH, REFRESH}, fetch = FetchType.EAGER)
     private Group group;
 
-    public Student(String firstName, String lastName, String phoneNumber, String email, String studyFormat) {
+    public Student(String firstName, String lastName, String phoneNumber, String email, StudyFormat studyFormat) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.studyFormat = studyFormat;
     }
-
-
 
 }

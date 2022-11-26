@@ -1,6 +1,7 @@
 package com.peaksoft.controller;
 
 import com.peaksoft.entity.Instructor;
+import com.peaksoft.entity.enums.Specialization;
 import com.peaksoft.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +45,12 @@ public class InstructorController {
     public String newInstructor(@PathVariable Long courseId, Model model) {
         model.addAttribute("newInstructor", new Instructor());
         model.addAttribute("courseId", courseId);
+        model.addAttribute("BACK_END_DEVELOPER", Specialization.BACK_END_DEVELOPER);
+        model.addAttribute("FRONT_END_DEVELOPER", Specialization.FRONT_END_DEVELOPER);
+        model.addAttribute("PM_MANAGER", Specialization.PM_MANAGER);
+        model.addAttribute("UX_UI_DESIGNER", Specialization.UX_UI_DESIGNER);
+        model.addAttribute("IOS_DEVELOPER", Specialization.IOS_DEVELOPER);
+        model.addAttribute("ANDROID_DEVELOPER", Specialization.ANDROID_DEVELOPER);
         return "/instructor/save_instructor";
     }
 
@@ -58,6 +65,12 @@ public class InstructorController {
         Instructor instructor = instructorService.getInstructorById(id);
         model.addAttribute("updateInstructor", instructor);
         model.addAttribute("courseId", instructor.getCourse().getId());
+        model.addAttribute("BACKEND_DEVELOPER", Specialization.BACK_END_DEVELOPER);
+        model.addAttribute("FRONT_END_DEVELOPER", Specialization.FRONT_END_DEVELOPER);
+        model.addAttribute("PM_MANAGER", Specialization.PM_MANAGER);
+        model.addAttribute("UX_UI_DESIGNER", Specialization.UX_UI_DESIGNER);
+        model.addAttribute("IOS_DEVELOPER", Specialization.IOS_DEVELOPER);
+        model.addAttribute("ANDROID_DEVELOPER", Specialization.ANDROID_DEVELOPER);
         return "/instructor/update_instructor";
     }
 

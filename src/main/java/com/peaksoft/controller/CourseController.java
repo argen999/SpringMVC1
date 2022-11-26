@@ -33,10 +33,11 @@ public class CourseController {
 
     @GetMapping("/getAllCourseByCompanyId/{companyId}")
     public String getAllCourseByCompanyId(@PathVariable Long companyId,
-                                          @ModelAttribute("gr") Group group,
+                                          @ModelAttribute("group") Group group,
                                           Model model) {
         model.addAttribute("getAllCourseByCompanyId", courseService.getAllCourse(companyId));
         model.addAttribute("companyId", companyId);
+        model.addAttribute("groups", groupService.getAllGroup());
         return "/course/get_all_course_by_company_id";
     }
 
@@ -81,13 +82,12 @@ public class CourseController {
         return "redirect:/getAllCourseByCompanyId/" + companyId;
     }
 
-//    @GetMapping("/{courseId}/{groupId}/assignGroup")
-//    public String assignGroup(@PathVariable Long courseId,
-//                              @PathVariable Long groupId,
-//                              @ModelAttribute("group") Group group) {
-//        System.out.println("1");
-//        groupService.assignGroup(courseId, groupId);
-//        System.out.println("2");
-//        return "redirect:/getAllGroupByCourseId/" + courseId;
-//    }
+    @PostMapping("/{courseId}/assignGroup")
+    private String assignGroup(@PathVariable Long courseId,
+                               @ModelAttribute("group") Group group) throws IOException {
+        System.out.println(group);
+        Long id = group.getId();
+        groupService.assignGroup(courseId, id);
+        return "redirect:/getAllGroupByCourseId/"+courseId;
+    }
 }
