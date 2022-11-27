@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -35,7 +36,7 @@ public class Company {
         this.locatedCountry = locatedCountry;
     }
 
-    @OneToMany(cascade = {DETACH, MERGE, REFRESH, REMOVE}, fetch = LAZY, mappedBy = "company")
+    @OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "company")
     private List<Course> courses;
 
     public void addCourse(Course course) {

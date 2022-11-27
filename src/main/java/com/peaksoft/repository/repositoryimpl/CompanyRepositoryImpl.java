@@ -1,6 +1,8 @@
 package com.peaksoft.repository.repositoryimpl;
 
 import com.peaksoft.entity.Company;
+import com.peaksoft.entity.Course;
+import com.peaksoft.entity.Group;
 import com.peaksoft.repository.CompanyRepository;
 import org.springframework.stereotype.Repository;
 

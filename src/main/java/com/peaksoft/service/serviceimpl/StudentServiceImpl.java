@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -49,5 +50,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void deleteStudent(Long id) {
         studentRepository.deleteStudent(id);
+    }
+
+    @Override
+    public void assignStudent(Long id, Long groupId) throws IOException {
+        studentRepository.assignStudent(id, groupId);
     }
 }

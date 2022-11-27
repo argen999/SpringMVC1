@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -38,9 +39,7 @@ public class InstructorServiceImpl implements InstructorService {
 
     @Override
     public void saveInstructor(Long courseId, Instructor instructor) {
-        System.out.println("3");
         instructorRepository.saveInstructor(courseId, instructor);
-        System.out.println("4");
     }
 
     @Override
@@ -51,6 +50,11 @@ public class InstructorServiceImpl implements InstructorService {
     @Override
     public void deleteInstructor(Long id) {
         instructorRepository.deleteInstructor(id);
+    }
+
+    @Override
+    public void assignInstructor(Long id, Long courseId) throws IOException {
+        instructorRepository.assignInstructor(id, courseId);
     }
 
 }

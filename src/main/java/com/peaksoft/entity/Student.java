@@ -36,7 +36,7 @@ public class Student {
     @Column(length = 500)
     private StudyFormat studyFormat;
 
-    @ManyToOne(cascade = {PERSIST, MERGE, DETACH, REFRESH}, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = {MERGE, DETACH, REFRESH}, fetch = FetchType.EAGER)
     private Group group;
 
     public Student(String firstName, String lastName, String phoneNumber, String email, StudyFormat studyFormat) {

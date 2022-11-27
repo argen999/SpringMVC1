@@ -31,10 +31,10 @@ public class Group {
     @Column(length = 500)
     private String image;
 
-    @ManyToMany(cascade = {DETACH, MERGE, REFRESH}, fetch = LAZY)
+    @ManyToMany(cascade = {MERGE, REFRESH, DETACH, PERSIST}, fetch = LAZY, mappedBy = "groups")
     private List<Course> courses;
 
-    @OneToMany(cascade = {DETACH, MERGE, REFRESH, REMOVE}, fetch = LAZY, mappedBy = "group")
+    @OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "group")
     private List<Student> students;
 
     public Group(String groupName, String dataOfStart, String image) {

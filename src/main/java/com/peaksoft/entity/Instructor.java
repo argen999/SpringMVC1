@@ -47,7 +47,7 @@ public class Instructor {
         this.specialization = specialization;
     }
 
-    @ManyToOne(cascade = {DETACH, MERGE, REFRESH, PERSIST}, fetch = EAGER)
+    @ManyToOne(cascade = {DETACH, MERGE, REFRESH}, fetch = EAGER)
     private Course course;
 
     public void plus() {

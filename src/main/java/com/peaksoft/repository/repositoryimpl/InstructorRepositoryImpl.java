@@ -1,13 +1,16 @@
 package com.peaksoft.repository.repositoryimpl;
 
 import com.peaksoft.entity.Course;
+import com.peaksoft.entity.Group;
 import com.peaksoft.entity.Instructor;
+import com.peaksoft.entity.Student;
 import com.peaksoft.repository.InstructorRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Repository
@@ -57,5 +60,23 @@ public class InstructorRepositoryImpl implements InstructorRepository {
     @Override
     public void deleteInstructor(Long id) {
         entityManager.remove(entityManager.find(Instructor.class, id));
+    }
+
+    @Override
+    public void assignInstructor(Long id, Long courseId) throws IOException {
+        Instructor instructor = entityManager.find(Instructor.class, id);
+        Course course = entityManager.find(Course.class, courseId);
+        if (course.getInstructors() != null) {
+            for (Instructor i : course.getInstructors()) {
+                if (i.getId() == id) {
+                    throw new IOException("This instructor already exists!");
+                }
+            }
+        }
+
+        instructor.setCourse(course);
+        course.addInstructor(instructor);
+        entityManager.merge(course);
+        entityManager.merge(instructor);
     }
 }

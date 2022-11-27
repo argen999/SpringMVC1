@@ -2,8 +2,10 @@ package com.peaksoft.controller;
 
 import com.peaksoft.entity.Course;
 import com.peaksoft.entity.Group;
+import com.peaksoft.entity.Instructor;
 import com.peaksoft.service.CourseService;
 import com.peaksoft.service.GroupService;
+import com.peaksoft.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +19,13 @@ public class CourseController {
 
     private final CourseService courseService;
     private final GroupService groupService;
+    private final InstructorService instructorService;
 
     @Autowired
-    public CourseController(CourseService courseService, GroupService groupService) {
+    public CourseController(CourseService courseService, GroupService groupService, InstructorService instructorService) {
         this.courseService = courseService;
         this.groupService = groupService;
+        this.instructorService = instructorService;
     }
 
     @GetMapping("/getAllCourse/{companyId}")
@@ -34,10 +38,12 @@ public class CourseController {
     @GetMapping("/getAllCourseByCompanyId/{companyId}")
     public String getAllCourseByCompanyId(@PathVariable Long companyId,
                                           @ModelAttribute("group") Group group,
+                                          @ModelAttribute("instructor") Instructor instructor,
                                           Model model) {
         model.addAttribute("getAllCourseByCompanyId", courseService.getAllCourse(companyId));
         model.addAttribute("companyId", companyId);
         model.addAttribute("groups", groupService.getAllGroup());
+        model.addAttribute("instructors", instructorService.getAllInstructor());
         return "/course/get_all_course_by_company_id";
     }
 
@@ -90,4 +96,13 @@ public class CourseController {
         groupService.assignGroup(courseId, id);
         return "redirect:/getAllGroupByCourseId/"+courseId;
     }
+
+    @PostMapping("/{courseId}/assignInstructor")
+    private String assignInstructorToCourse(@PathVariable("courseId") Long courseId,
+                                            @ModelAttribute("instructor") Instructor instructor) throws IOException {
+        instructorService.assignInstructor(instructor.getId(), courseId);
+        return "redirect:/getAllCourseByCompanyId/ " + courseId;
+    }
+
+
 }

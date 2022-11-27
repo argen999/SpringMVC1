@@ -39,13 +39,17 @@ public class Course {
         this.description = description;
     }
 
-    @ManyToOne(cascade = {DETACH, MERGE, REFRESH, PERSIST}, fetch = EAGER)
+    @ManyToOne(cascade = {DETACH, MERGE, REFRESH}, fetch = EAGER)
     private Company company;
 
-    @ManyToMany(cascade = {DETACH, REFRESH, MERGE}, fetch = LAZY, mappedBy = "courses")
+    @ManyToMany(cascade = {DETACH, REFRESH, MERGE, PERSIST}, fetch = LAZY)
+    @JoinTable(
+            name = "groups_courses",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
     private List<Group> groups;
 
-    @OneToMany(cascade = {DETACH, MERGE, REFRESH, REMOVE}, fetch = LAZY, mappedBy = "course")
+    @OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "course")
     private List<Instructor> instructors;
 
     @OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "course")

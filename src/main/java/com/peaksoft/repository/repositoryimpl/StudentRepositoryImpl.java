@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Repository
@@ -42,7 +43,11 @@ public class StudentRepositoryImpl implements StudentRepository {
         student.setGroup(group);
         for (Course c : student.getGroup().getCourses()) {
             c.getCompany().plus();
-
+        }
+        for (Course c : student.getGroup().getCourses()) {
+            for (Instructor i : c.getInstructors()) {
+                i.plus();
+            }
         }
         entityManager.merge(student);
     }
@@ -64,6 +69,35 @@ public class StudentRepositoryImpl implements StudentRepository {
         for (Course c : group.getCourses()) {
             c.getCompany().minus();
         }
-        entityManager.remove(entityManager.find(Student.class,id));
+        Student student = entityManager.find(Student.class, id);
+        for (Course c : student.getGroup().getCourses()) {
+            for (Group g:c.getGroups()) {
+                for (Student s:g.getStudents()) {
+                    if (s.equals(student)){
+                        for (Instructor i:c.getInstructors()) {
+                            i.minus();
+                        }
+                    }
+                }
+            }
+        }
+        entityManager.remove(student);
+    }
+
+    @Override
+    public void assignStudent(Long id, Long groupId) throws IOException {
+        Student student = entityManager.find(Student.class, id);
+        Group group = entityManager.find(Group.class, groupId);
+        if (group.getStudents() != null) {
+            for (Student s : group.getStudents()) {
+                if (s.getId() == id) {
+                    throw new IOException("This student already exists!");
+                }
+            }
+        }
+        student.setGroup(group);
+        group.addStudent(student);
+        entityManager.merge(group);
+        entityManager.merge(student);
     }
 }

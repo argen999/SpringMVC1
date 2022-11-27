@@ -64,7 +64,7 @@ public class GroupRepositoryImpl implements GroupRepository {
         if (course.getGroups() != null) {
             for (Group g : course.getGroups()) {
                 if (g.getId() == id) {
-                    throw new IOException("Bul course bosh emes!");
+                    throw new IOException("This group already exists!");
                 }
             }
         }

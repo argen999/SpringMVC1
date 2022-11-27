@@ -2,6 +2,7 @@ package com.peaksoft.service;
 
 import com.peaksoft.entity.Student;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface StudentService {
@@ -11,4 +12,5 @@ public interface StudentService {
     void saveStudent(Long groupId, Student student);
     void updateStudent(Long id, Student student);
     void deleteStudent(Long id);
+    void assignStudent(Long id, Long groupId) throws IOException;
 }

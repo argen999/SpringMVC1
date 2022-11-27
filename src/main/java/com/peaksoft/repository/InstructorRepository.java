@@ -2,6 +2,7 @@ package com.peaksoft.repository;
 
 import com.peaksoft.entity.Instructor;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface InstructorRepository {
@@ -11,4 +12,5 @@ public interface InstructorRepository {
     void saveInstructor(Long courseId, Instructor instructor);
     void updateInstructor(Long id, Instructor instructor);
     void deleteInstructor(Long id);
+    void assignInstructor(Long id, Long courseId) throws IOException;
 }

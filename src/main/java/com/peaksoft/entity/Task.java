@@ -8,6 +8,7 @@ import javax.persistence.*;
 
 
 import static javax.persistence.CascadeType.*;
+import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
@@ -36,6 +37,7 @@ public class Task {
         this.deadLine = deadLine;
     }
 
-    @ManyToOne(cascade = {DETACH, REFRESH, MERGE, PERSIST}, fetch = LAZY)
+    @ManyToOne(cascade = {DETACH, REFRESH, MERGE, PERSIST}, fetch = EAGER)
     private Lesson lesson;
+
 }
