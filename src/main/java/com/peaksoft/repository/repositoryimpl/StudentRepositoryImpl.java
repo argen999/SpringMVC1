@@ -70,17 +70,6 @@ public class StudentRepositoryImpl implements StudentRepository {
             c.getCompany().minus();
         }
         Student student = entityManager.find(Student.class, id);
-        for (Course c : student.getGroup().getCourses()) {
-            for (Group g:c.getGroups()) {
-                for (Student s:g.getStudents()) {
-                    if (s.equals(student)){
-                        for (Instructor i:c.getInstructors()) {
-                            i.minus();
-                        }
-                    }
-                }
-            }
-        }
         entityManager.remove(student);
     }
 

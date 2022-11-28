@@ -1,7 +1,6 @@
 package com.peaksoft.controller;
 
 import com.peaksoft.entity.Group;
-import com.peaksoft.entity.Instructor;
 import com.peaksoft.entity.Student;
 import com.peaksoft.service.GroupService;
 import com.peaksoft.service.StudentService;

@@ -77,7 +77,7 @@ public class StudentController {
     @GetMapping("/{groupId}/{id}/deleteStudentById")
     public String deleteStudentById(@PathVariable Long groupId, @PathVariable Long id) {
         studentService.deleteStudent(id);
-        return "redirect:/getAllLessonByCourseId/" + groupId;
+        return "redirect:/getAllStudentByGroupId/" + groupId;
     }
 
 

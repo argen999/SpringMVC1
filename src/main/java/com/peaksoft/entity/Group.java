@@ -31,7 +31,11 @@ public class Group {
     @Column(length = 500)
     private String image;
 
-    @ManyToMany(cascade = {MERGE, REFRESH, DETACH, PERSIST}, fetch = LAZY, mappedBy = "groups")
+    @ManyToMany(cascade = {MERGE ,REFRESH, DETACH, PERSIST}, fetch = LAZY)
+    @JoinTable(
+            name = "groups_courses",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
     private List<Course> courses;
 
     @OneToMany(cascade = ALL, fetch = LAZY, mappedBy = "group")
